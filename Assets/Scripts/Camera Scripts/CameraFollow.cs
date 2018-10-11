@@ -18,6 +18,6 @@ public class CameraFollow : MonoBehaviour {
     // Follow a target with a certain distance
     private void FollowTarget()
     {
-        transform.position = target.transform.position - new Vector3(10, -10, 10);
+        transform.position = target.transform.position + new Vector3(-10, 10, -10);
     }
 }
