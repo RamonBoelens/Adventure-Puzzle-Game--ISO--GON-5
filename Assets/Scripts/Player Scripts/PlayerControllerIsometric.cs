@@ -11,6 +11,9 @@ public class PlayerControllerIsometric : MonoBehaviour
 
     Vector3 forward, right, heading;
 
+    public bool disableHorizontalMovement = false;
+    public bool disableVerticalMovement = false;
+
     // Use this for initialization
     void Start()
     {
@@ -24,15 +27,32 @@ public class PlayerControllerIsometric : MonoBehaviour
     void Update()
     {
         // Check for input from the player
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) ||
+            Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             Move();
     }
 
     // Check for player input and move accordingly
     private void Move()
     {
-        Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
-        Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
+        Vector3 rightMovement;
+        Vector3 upMovement;
+
+        if (disableHorizontalMovement)
+        {
+            upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey") * 0;
+            rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
+        }
+        else if (disableVerticalMovement)
+        {
+            upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
+            rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey") * 0;
+        }
+        else
+        {
+            upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
+            rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
+        }
 
         // Create direction
         heading = Vector3.Normalize(rightMovement + upMovement);
@@ -58,5 +78,11 @@ public class PlayerControllerIsometric : MonoBehaviour
     public Vector3 GetHeading()
     {
         return heading;
+    }
+
+    public void SetDisableMovement(bool _disableHorizontalMovement, bool _disableVerticalMovement)
+    {
+        disableHorizontalMovement = _disableHorizontalMovement;
+        disableVerticalMovement = _disableVerticalMovement;
     }
 }

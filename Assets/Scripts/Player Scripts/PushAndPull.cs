@@ -21,8 +21,8 @@ public class PushAndPull : MonoBehaviour {
     void Update () {
         if (dragableTarget == null)
             return;
-        else
-            Debug.Log("Dragable object: " + dragableTarget);
+        //else
+            //Debug.Log("Dragable object: " + dragableTarget);
 	}
 
     // When entering the trigger
@@ -74,6 +74,7 @@ public class PushAndPull : MonoBehaviour {
                         Debug.Log("You've unselected the target.");
 
                         ChangePlayerSpeed();
+                        playerController.SetDisableMovement(false, false);
                     }
                 }
             }
@@ -110,12 +111,14 @@ public class PushAndPull : MonoBehaviour {
 
     private void CheckHeading()
     {
+        // Get the current heading of the player
         currentHeading = playerController.GetHeading();
-        if (currentHeading == new Vector3(0.7f, 0.0f, 0.7f) || currentHeading == new Vector3(-0.7f, 0.0f, -0.7f))
-            Debug.Log("Only W & S");
-        else if (currentHeading == new Vector3(0.7f, 0.0f, -0.7f) || currentHeading == new Vector3(-0.7f, 0.0f, 0.7f))
-            Debug.Log("Only A & D");
 
-        Debug.Log(currentHeading);
+        // If using horizontal axis disable the vertical movement
+        if (currentHeading == new Vector3(0.70710680f, 0.0f, 0.70710680f) || currentHeading == new Vector3(-0.70710680f, 0.0f, -0.70710680f))
+            playerController.SetDisableMovement(false, true);
+        // If using vertical axis disable the horizontal movement
+        else if (currentHeading == new Vector3(0.70710680f, 0.0f, -0.70710680f) || currentHeading == new Vector3(-0.70710680f, 0.0f, 0.70710680f))
+            playerController.SetDisableMovement(true, false);
     }
 }
