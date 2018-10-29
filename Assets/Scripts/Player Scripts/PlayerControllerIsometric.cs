@@ -14,6 +14,8 @@ public class PlayerControllerIsometric : MonoBehaviour
     public bool disableHorizontalMovement = false;
     public bool disableVerticalMovement = false;
 
+    bool disableRotation = false;
+
     // Use this for initialization
     void Start()
     {
@@ -58,7 +60,8 @@ public class PlayerControllerIsometric : MonoBehaviour
         heading = Vector3.Normalize(rightMovement + upMovement);
 
         // Rotation
-        transform.forward = heading;
+        if (disableRotation == false)
+            transform.forward = heading;
 
         // Movement
         transform.position += rightMovement;
@@ -82,6 +85,12 @@ public class PlayerControllerIsometric : MonoBehaviour
 
     public void SetDisableMovement(bool _disableHorizontalMovement, bool _disableVerticalMovement)
     {
+        // Disable the rotation when a block is grabbed
+        if (_disableHorizontalMovement || _disableVerticalMovement == true)
+            disableRotation = true;
+        else
+            disableRotation = false;
+
         disableHorizontalMovement = _disableHorizontalMovement;
         disableVerticalMovement = _disableVerticalMovement;
     }

@@ -11,6 +11,11 @@ public class PushAndPull : MonoBehaviour {
 
     PlayerControllerIsometric playerController;
 
+    Vector3 facingUp = new Vector3(0.70710680f, 0.0f, 0.70710680f);
+    Vector3 facingDown = new Vector3(-0.70710680f, 0.0f, -0.70710680f);
+    Vector3 facingRight = new Vector3(0.70710680f, 0.0f, -0.70710680f);
+    Vector3 facingLeft = new Vector3(-0.70710680f, 0.0f, 0.70710680f);
+
     private void Awake()
     {
         // Reference to the playerController
@@ -21,8 +26,8 @@ public class PushAndPull : MonoBehaviour {
     void Update () {
         if (dragableTarget == null)
             return;
-        //else
-            //Debug.Log("Dragable object: " + dragableTarget);
+        else
+            DragObject();
 	}
 
     // When entering the trigger
@@ -66,6 +71,7 @@ public class PushAndPull : MonoBehaviour {
 
                         ChangePlayerSpeed();
                         CheckHeading();
+                        DragObject();
                     }
                     // Otherwise unselect the current object
                     else
@@ -115,10 +121,40 @@ public class PushAndPull : MonoBehaviour {
         currentHeading = playerController.GetHeading();
 
         // If using horizontal axis disable the vertical movement
-        if (currentHeading == new Vector3(0.70710680f, 0.0f, 0.70710680f) || currentHeading == new Vector3(-0.70710680f, 0.0f, -0.70710680f))
+        if (currentHeading == facingUp || currentHeading == facingDown)
             playerController.SetDisableMovement(false, true);
         // If using vertical axis disable the horizontal movement
-        else if (currentHeading == new Vector3(0.70710680f, 0.0f, -0.70710680f) || currentHeading == new Vector3(-0.70710680f, 0.0f, 0.70710680f))
+        else if (currentHeading == facingRight || currentHeading == facingLeft)
             playerController.SetDisableMovement(true, false);
+    }
+
+    // Check the current rotation of the player and place the dragable object in front of the player
+    private void DragObject()
+    {
+        Vector3 margin;
+
+        if (currentHeading == facingUp)
+        {
+            margin = new Vector3(1.5f, 0, 1.5f);
+            dragableTarget.transform.position = new Vector3(transform.position.x, dragableTarget.transform.position.y, transform.position.z) + margin;
+        }
+        else if (currentHeading == facingDown)
+        {
+            margin = new Vector3(1.5f, 0, 1.5f);
+            dragableTarget.transform.position = new Vector3(transform.position.x, dragableTarget.transform.position.y, transform.position.z) - margin;
+        }
+        else if (currentHeading == facingRight)
+        {
+            margin = new Vector3(1.5f, 0, -1.5f);
+            dragableTarget.transform.position = new Vector3(transform.position.x, dragableTarget.transform.position.y, transform.position.z) + margin;
+        }
+        else if (currentHeading == facingLeft)
+        {
+            margin = new Vector3(1.5f, 0, -1.5f);
+            dragableTarget.transform.position = new Vector3(transform.position.x, dragableTarget.transform.position.y, transform.position.z) - margin;
+        }
+
+        
+
     }
 }
