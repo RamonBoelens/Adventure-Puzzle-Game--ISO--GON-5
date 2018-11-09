@@ -20,7 +20,7 @@ public class KeyPickup : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            Destroy(linkedDoor);
+            linkedDoor.GetComponent<DoorHandler>().OpenDoor();
             Destroy(gameObject);
         }
     }
