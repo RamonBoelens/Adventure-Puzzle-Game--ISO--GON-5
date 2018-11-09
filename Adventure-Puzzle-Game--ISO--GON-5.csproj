@@ -321,7 +321,10 @@
     <Compile Include="Assets\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Scripts\PickUpHandler.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerControllerIsometric.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PushAndPull.cs" />
+    <Compile Include="Assets\Scripts\TrapHandler.cs" />
+    <Compile Include="Assets\Spikes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />

@@ -11,6 +11,7 @@ TagManager:
   - Gem
   - Treasure Chest
   - Statue
+  - Spikes
   layers:
   - Default
   - TransparentFX

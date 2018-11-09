@@ -14,9 +14,7 @@ public class PickUpHandler : MonoBehaviour {
     {
         // If something else then the player is in the trigger zone then ignore it
         if (other.tag != "Player")
-        {
             return;
-        }
         // If the player hits a key open the door
         else if (tag == "Key")
         {
