@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
     // Access point for other scripts
-    public static MenuManager instance;
+    public static GameManager instance;
+
+    int score;
 
     private void Awake()
     {
-        Debug.Log("Menu instance: " + instance);
-
         // Singleton
         if (instance == null)
             instance = this;
@@ -22,13 +21,19 @@ public class MenuManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SwitchScene(int _sceneIndex)
-    {
-        SceneManager.LoadScene(_sceneIndex);
-    }
+    // Use this for initialization
+    void Start () {
+        score = 0;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
-    public void CloseProgram()
+    public void AddScore(int _score)
     {
-        Application.Quit();
+        score += _score;
+        Debug.Log("Added " + _score + " points. Total points are " + score + " now.");
     }
 }

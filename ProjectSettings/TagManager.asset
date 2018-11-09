@@ -5,7 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Object
-  - PickUp
+  - Key
+  - Lever
+  - Coin
+  - Gem
+  - Treasure Chest
+  - Statue
   layers:
   - Default
   - TransparentFX

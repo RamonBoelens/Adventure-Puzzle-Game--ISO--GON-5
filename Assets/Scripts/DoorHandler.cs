@@ -13,6 +13,14 @@ public class DoorHandler : MonoBehaviour {
         animator = gameObject.GetComponent<Animator>();
     }
 
+    public void ChangeDoorState()
+    {
+        if (animator.GetBool("isOpen"))
+            CloseDoor();
+        else
+            OpenDoor();
+    }
+
     public void OpenDoor()
     {
         animator.SetBool("isOpen", true);
