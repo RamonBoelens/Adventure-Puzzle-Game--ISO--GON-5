@@ -24,7 +24,7 @@ public class PickUpHandler : MonoBehaviour {
         // If the player pulls a lever then open or close the door depending on its current state
         else if (tag == "Lever")
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 GetComponent<Key>().LinkedDoor.GetComponent<DoorHandler>().ChangeDoorState();
 

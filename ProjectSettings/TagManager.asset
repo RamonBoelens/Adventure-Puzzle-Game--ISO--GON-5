@@ -12,6 +12,7 @@ TagManager:
   - Treasure Chest
   - Statue
   - Spikes
+  - Enemy
   layers:
   - Default
   - TransparentFX

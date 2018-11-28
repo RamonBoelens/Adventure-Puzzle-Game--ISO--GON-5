@@ -51,3 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fd9970e223c5408cec1e8d164c966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scorefield: {fileID: 0}
+  healthField: {fileID: 0}

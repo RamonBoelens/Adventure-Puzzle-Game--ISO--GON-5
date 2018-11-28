@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour {
         if (instance == null)
             instance = this;
         else
-            Destroy(this);
+            Destroy(gameObject);
 
         // Keep this game object alive while going through different scenes
         DontDestroyOnLoad(gameObject);
